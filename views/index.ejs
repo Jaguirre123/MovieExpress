@@ -1,5 +1,14 @@
+<%- include("./_partials/header")%>
 <body>
+    <ul class="right">
+        <% if (user) { %>
+        <li><a href="/logout">Logout</a></li>
+        <% } else { %>
+        <li><a href="/auth/google">Login with Google</a></li>
+        <% } %>
+      </ul>
   <p>Welcome to </p>
 </body>
 
 </html>
+<%- include("./_partials/footer")%>
