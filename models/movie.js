@@ -1,13 +1,14 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-var commentSchema = new mongoose.Schema({
+var commentSchema = new Schema({
     content: String,
-    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+    user: { type: Schema.Types.ObjectId, ref: 'User' }
 }, {
     timestamps: true    
 });
 
-var movieSchema = new mongoose.Schema({
+var movieSchema = new Schema({
   title: String,
   poster: String,
   users: [ { type: Schema.Types.ObjectId, ref: 'User'} ],
