@@ -6,3 +6,27 @@ body {
 a {
   color: #00B7FF;
 }
+
+footer {
+  /* display: inline-flex; */
+  text-align: center;
+  background-color: lightgrey;
+}
+
+.team {
+  color: black ;
+}
+
+.team:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+footer > ul {
+  list-style: none;
+  display: inline-flex;
+}
+
+footer > ul li {
+  padding: 0 10px 0 10px;
+}
