@@ -1,1 +1,6 @@
 <div>hello</div>
+
+<% movies.forEach(function(movie) { %>
+    <p><%= movie.title %></p>
+    <div><img src='https://image.tmdb.org/t/p/w500/<%= movie.poster_path %>'></div>
+<% }) %>
