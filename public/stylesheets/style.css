@@ -1,7 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  background: linear-gradient(to right, rgba(255,0,0,0), rgb(135, 0, 0));}
 
 a {
   color: #00B7FF;
@@ -36,6 +36,7 @@ footer > ul li {
   border-radius: 20px;
   border: 3px inset grey;
   box-shadow: 0 4px 5px black;
+  margin: 25px auto;
 }
 
 .carousel-inner {
@@ -43,6 +44,9 @@ footer > ul li {
   width: 40%;
   overflow: hidden;
   margin: 0 auto;
+  text-align:center;
+  height: auto;
+  display: block;
 }
 
 .caroImg {
@@ -56,13 +60,19 @@ footer > ul li {
 
 .mainH {
   font-family: 'Abril Fatface', cursive;
+  margin: 25px auto;
 }
 
 .card {
   box-shadow: 0 4px 5px black;
-
 }
 
 .card-text {
   font-family:  'Cinzel', serif;
+}
+
+@media (max-width: 900px) {
+  .carousel-inner {
+    width: 100%;
+  }
 }
