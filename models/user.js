@@ -7,7 +7,7 @@ var userSchema = new Schema({
   admin: {type: Boolean, default: false},
   zip: String,
   avatar: String,
-  movies: [{type: Schema.Types.ObjectId, ref: 'Movie'}],
+  favorites: [{type: Schema.Types.ObjectId, ref: 'Movie'}],
   googleId: String
 }, {
   timestamps: true
