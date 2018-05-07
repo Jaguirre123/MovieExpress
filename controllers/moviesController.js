@@ -14,7 +14,7 @@ function nowShowing(req, res) {
     request(
         rootURL + 'movie/now_playing?api_key=' + process.env.API_KEY, 
         function(err, response, body){
-            res.render('movies/index', {movies: JSON.parse(body).results});
+            res.render('movies/index', {movies: JSON.parse(body).results, user: req.user});
         }
     )   
 };
