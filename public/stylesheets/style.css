@@ -1,6 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
 }
 
 a {
@@ -29,4 +30,13 @@ footer > ul {
 
 footer > ul li {
   padding: 0 10px 0 10px;
+}
+
+.jumbotron {
+  margin-top: 2%;
+}
+
+
+.d-none {
+  display: block !important;
 }
