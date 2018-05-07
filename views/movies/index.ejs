@@ -1,5 +1,8 @@
 <%- include("../_partials/header")%>
-
+<center>
+    <h1 class="mainH">New Releases</h1>
+    <hr>
+</center>
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <% movies.forEach(function(movie, index) { %>
@@ -21,14 +24,7 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
-    </div>
-
-<center>
-    <h1 class="mainH">New Releases</h1>
-    <hr>
-</center>
-
-
+</div>
 <div class="row mb-2">
     <% movies.forEach(function(movie) { %>
     <div class="col-md-4">
