@@ -1,7 +1,6 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-
 }
 
 a {
@@ -32,11 +31,38 @@ footer > ul li {
   padding: 0 10px 0 10px;
 }
 
-.jumbotron {
-  margin-top: 2%;
+.carousel {
+  background: linear-gradient(#062F4F, #B82601);
+  border-radius: 20px;
+  border: 3px inset grey;
+  box-shadow: 0 4px 5px black;
 }
 
+.carousel-inner {
+  position: relative;
+  width: 40%;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.caroImg {
+  height: 500px;
+  border-radius: 20px;
+}
 
 .d-none {
   display: block !important;
+}
+
+.mainH {
+  font-family: 'Abril Fatface', cursive;
+}
+
+.card {
+  box-shadow: 0 4px 5px black;
+
+}
+
+.card-text {
+  font-family:  'Cinzel', serif;
 }
