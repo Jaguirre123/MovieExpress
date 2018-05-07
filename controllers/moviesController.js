@@ -19,6 +19,15 @@ function nowShowing(req, res) {
     )   
 };
 
+function getMovie(req, res) {
+    request(
+    rootURL + `movie/${req.params.id}?api_key=` + process.env.API_KEY,
+    function(err, response, body) {
+        res.render('movies/show', {movie: JSON.parse(body)});
+   })
+};
+
 module.exports = {
-    nowShowing
+    nowShowing,
+    getMovie
 }
