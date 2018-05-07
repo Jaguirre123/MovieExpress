@@ -20,11 +20,41 @@ function nowShowing(req, res) {
 };
 
 function getMovie(req, res) {
+    movieApiUtil(req.params.id, function(err, response, body) {
+        res.render('movies/show', {movie: JSON.parse(body), user: req.user});
+    });
+}
+
+function addFavorite(req, res) {
+    var id = req.params.apiId
+    Movie.findOne({apiId: id}, function(err, movie) {
+        if (!movie) {
+            movieApiUtil(id, function(err, res, body) {
+                let movie=new Movie({
+                    title: body.title,
+                    poster: body.poster_path, 
+                    apiId: id,
+                })
+                movie.save(function(err){
+                    req.user.favorites.push(movie); 
+                    req.user.save();
+                    res.redirect('/');
+                });
+            })
+        } else {
+            req.user.favorites.push(id);
+            req.user.save();
+        }
+    })
+};
+
+function movieApiUtil(apiId, cb) {
     request(
-    rootURL + `movie/${req.params.id}?api_key=` + process.env.API_KEY,
-    function(err, response, body) {
-        res.render('movies/show', {movie: JSON.parse(body)});
-   })
+        `${rootURL}movie/${apiId}?api_key=${process.env.API_KEY}`,
+        function (err, response, body) {
+            cb(err, response, body);
+        }
+    )
 };
 
 module.exports = {

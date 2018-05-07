@@ -1,4 +1,11 @@
+<%- include("../_partials/header")%>
+<div>
+    <img src="https://image.tmdb.org/t/p/w500/<%= movie.poster_path %>">
+    <h1><%= movie.title %></h1>
+    <h2><%= movie.vote_average %> / 10</h2>
+    <p><%= movie.overview %></p>
+</div>
 
+<button type="button" class="btn btn-danger">&hearts; Add Favorite &hearts;</button>
 
-<%= movie.title %>
-
+<%- include("../_partials/footer")%>
