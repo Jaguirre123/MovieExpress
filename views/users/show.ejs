@@ -11,7 +11,7 @@
   <% userShow.favorites.forEach(function(favorite) { %>
         <li><%= favorite.title %></li>
         <div><img class="favorite-movie" src="https://image.tmdb.org/t/p/w500/<%= favorite.poster %>"</div>
-        <form method="POST" action="/movies/favorites/<%= favorite %>?_method=DELETE">
+        <form method="POST" action="/movies/favorites/<%= favorite._id %>?_method=DELETE">
             <input type="submit" class="btn btn-danger" value="Delete Favorite">
         </form>
   <% }); %>
