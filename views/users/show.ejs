@@ -1,14 +1,17 @@
 <%- include("../_partials/header")%>
 
 
-<h1><%= userShow.name%></h1>
+<h1><%= userShow.name %></h1>
 <div>
     <img src="<%= userShow.avatar %>">
 </div>
 <h3><%= userShow.name%> 's Favorites</h3>
+<% userShow.favorites.forEach(function(favorite) { %>
 <ul>
-    <% userShow.favorites.forEach(function(favorite) { %>
         <li><%= favorite %></li>
+        <form method="POST" action="/movies/favorites/<%= favorite %>?_method=DELETE">
+            <input type="submit" class="btn btn-danger" value="Delete Favorite">
+        </form>
     <% }) %>
 </ul>
 

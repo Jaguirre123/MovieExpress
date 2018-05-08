@@ -30,7 +30,7 @@ function addFavorite(req, res) {
     Movie.findOne({apiId: id}, function(err, movie) {
         if (!movie) {
             movieApiUtil(id, function(err, response, body) {
-                let movie=new Movie({
+                let movie = new Movie({
                     title: JSON.parse(body).title,
                     poster: JSON.parse(body).poster_path, 
                     apiId: id,
@@ -38,21 +38,28 @@ function addFavorite(req, res) {
                 movie.save(function(err){
                     req.user.favorites.push(movie); 
                     req.user.save();
-                    res.redirect('/');
+                    res.redirect(`/users/${req.user._id}`);
                 });
             })
         } else {
             if (req.user.favorites.indexOf(movie._id) === -1) {
             req.user.favorites.push(movie);
             req.user.save();
-            res.redirect('/');
+            res.redirect(`/users/${req.user._id}`);
             } else {
-                res.redirect('/movies')
+                res.redirect(`/users/${req.user._id}`)
             };
         };
     });
     // todo: handle scenario where movie already has a document in db.
 };
+
+function delFavorite(req, res) {
+        req.user.favorites.remove(req.params.id)
+        req.user.save(function(err) {
+        res.redirect(`/users/${req.user._id}`);
+    });
+}
 
 function movieApiUtil(apiId, cb) {
     request(
@@ -68,4 +75,5 @@ module.exports = {
     getMovie, 
     movieApiUtil,
     addFavorite,
+    delFavorite
 }

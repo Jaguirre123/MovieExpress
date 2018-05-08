@@ -7,6 +7,6 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.get('/show/:id', usersCtrl.getUser);
+router.get('/:id', usersCtrl.getUser);
 
 module.exports = router;
