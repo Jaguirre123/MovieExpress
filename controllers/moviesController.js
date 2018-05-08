@@ -83,11 +83,21 @@ function getOrCreateMovie(apiId) {
     });   
 }
 
+function searchMovies(req, res) {
+    request(
+        `${rootURL}search/movie?api_key=${process.env.API_KEY}&language=en-US&query=${req.query.search}&include_adult=false`,
+        function(err, response, body) {
+            res.render('movies/results', {movies: JSON.parse(body).results, user: req.user});
+        }
+    )
+}
+
 module.exports = {
     nowShowing,
     getMovie, 
     movieApiUtil,
     addFavorite,
     delFavorite, 
-    addComment
+    addComment,
+    searchMovies
 }
