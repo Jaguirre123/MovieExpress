@@ -41,8 +41,16 @@ function addFavorite(req, res) {
                     res.redirect('/');
                 });
             })
-        }
-    })
+        } else {
+            if (req.user.favorites.indexOf(movie._id) === -1) {
+            req.user.favorites.push(movie);
+            req.user.save();
+            res.redirect('/');
+            } else {
+                res.redirect('/movies')
+            };
+        };
+    });
     // todo: handle scenario where movie already has a document in db.
 };
 

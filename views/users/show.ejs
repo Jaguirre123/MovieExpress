@@ -1,0 +1,15 @@
+<%- include("../_partials/header")%>
+
+
+<h1><%= userShow.name%></h1>
+<div>
+    <img src="<%= userShow.avatar %>">
+</div>
+<h3><%= userShow.name%> 's Favorites</h3>
+<ul>
+    <% userShow.favorites.forEach(function(favorite) { %>
+        <li><%= favorite %></li>
+    <% }) %>
+</ul>
+
+<%- include("../_partials/footer")%>
