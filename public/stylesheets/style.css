@@ -7,6 +7,10 @@ a {
   color: #00B7FF;
 }
 
+/* =======
+FOOTER
+========= */
+
 footer {
   /* display: inline-flex; */
   text-align: center;
@@ -30,6 +34,10 @@ footer > ul {
 footer > ul li {
   padding: 0 10px 0 10px;
 }
+
+/* =======
+CAROUSEL
+========= */
 
 .carousel {
   background: linear-gradient(#062F4F, #B82601);
@@ -58,6 +66,10 @@ footer > ul li {
   display: block !important;
 }
 
+/* =======
+MOVIES INDEX
+========= */
+
 .mainH {
   font-family: 'Abril Fatface', cursive;
   margin: 25px auto;
@@ -74,5 +86,62 @@ footer > ul li {
 @media (max-width: 900px) {
   .carousel-inner {
     width: 100%;
+  }
+}
+
+/* =======
+MOVIES SHOW
+========= */
+.container-fluid {
+  width: 85% !important;
+}
+
+.col-sm-9 {
+  max-width: 100% !important;
+}
+
+.movieNameRate {
+  display: inline-flex;
+}
+
+.movie {
+  border-radius: 20px;
+  width: 25%;
+  height: 390px;
+  border: 2px inset grey;
+  box-shadow: 0 0 10px black;
+}
+
+.movieReview {
+  display: inline-flex;
+  position: relative;
+}
+
+.overView {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  text-align: left;
+  margin-left: 25px;
+}
+
+@media (max-width: 700px) {
+  .movieNameRate > h1 {
+    display: inline-flex;
+    text-align: center;
+    margin: 10px auto;
+    font-size: 25px !important;
+  }
+
+  .movieReview {
+   display: block !important;
+  }
+
+  .movie {
+    width: 100%;
+  }
+
+  .overView {
+    display: block;
+    margin: 5px auto;
   }
 }
