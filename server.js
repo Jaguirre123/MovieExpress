@@ -5,12 +5,17 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 require('dotenv').config();
 var session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 var passport = require('passport');
 
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var moviesRouter = require('./routes/movies');
+const sessionStore = new MongoDBStore({
+  uri: process.env.DATABASE_URL,
+  collection: 'sessions'
+})
 
 var app = express();
 require('./config/db');
@@ -27,11 +32,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'MovieExpress is da bomb!',
-  resave: false,
-  saveUninitialized: true
+  resave: true,
+  saveUninitialized: true, 
+  store: sessionStore, 
+  cookie: {maxAge: 60000000},
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
