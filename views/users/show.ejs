@@ -8,7 +8,11 @@
 <h3><%= userShow.name%> 's Favorites</h3>
 <ul>
     <% userShow.favorites.forEach(function(favorite) { %>
-        <li><%= favorite %></li>
+        <li>
+            <%= favorite.title %>
+            <img src="https://image.tmdb.org/t/p/w500/<%= favorite.poster %>">
+        </li>
+        
     <% }) %>
 </ul>
 
