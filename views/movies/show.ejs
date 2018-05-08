@@ -6,6 +6,7 @@
     <p><%= movie.overview %></p>
 </div>
 
-<button type="button" class="btn btn-danger">&hearts; Add Favorite &hearts;</button>
-
+<form method="GET" action="/movies/favorite/<%= movie.id %>">
+    <input type="submit" class="btn btn-danger" value="&hearts; Add Favorite &hearts;">
+</form>
 <%- include("../_partials/footer")%>

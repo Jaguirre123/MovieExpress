@@ -4,5 +4,6 @@ var moviesCtrl = require('../controllers/moviesController');
 
 router.get('/', moviesCtrl.nowShowing);
 router.get('/:id', moviesCtrl.getMovie);
+router.get('/favorite/:id', moviesCtrl.addFavorite);
 
 module.exports = router;
