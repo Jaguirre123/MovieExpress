@@ -18,14 +18,14 @@ router.get('/oauth2callback', passport.authenticate(
   {
     // AYE THIS MIGHT CHANGE! pce out.
     // figure out views. route may change. TBD
-    successRedirect : '/',
-    failureRedirect : '/'
+    successRedirect : '/movies',
+    failureRedirect : '/movies'
   }
 ));
 
 router.get('/logout', function(req, res) {
   req.logout(); 
-  res.redirect('/');
+  res.redirect('/movies');
 });
 
 module.exports = router;
