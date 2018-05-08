@@ -45,12 +45,12 @@ function addComment(req, res) {
     getOrCreateMovie(req.params.id)
     .then(function(movie) {
         let comment = new Comment(req.body);
+        comment.user = req.user; 
         movie.comments.push(comment)
         movie.save();
-        req.user.push(user._id);
-        res.render('/:id');
+        res.redirect('back');
     });
-    }
+}
 
 function movieApiUtil(apiId, cb) {
     request(
