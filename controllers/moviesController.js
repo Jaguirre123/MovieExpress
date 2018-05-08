@@ -26,33 +26,44 @@ function getMovie(req, res) {
 }
 
 function addFavorite(req, res) {
-    var id = req.params.id
-    Movie.findOne({apiId: id}, function(err, movie) {
-        if (!movie) {
-            movieApiUtil(id, function(err, response, body) {
-                let movie=new Movie({
-                    title: JSON.parse(body).title,
-                    poster: JSON.parse(body).poster_path, 
-                    apiId: id,
-                })
-                movie.save(function(err){
-                    req.user.favorites.push(movie); 
-                    req.user.save();
-                    res.redirect('/');
-                });
-            })
-        } else {
-            if (req.user.favorites.indexOf(movie._id) === -1) {
-            req.user.favorites.push(movie);
+    getOrCreateMovie(req.params.id)
+        .then(function(movie) {
+            movie.users.push(req.user._id);
+            movie.save();
+            req.user.favorites.push(movie._id);
             req.user.save();
             res.redirect('/');
-            } else {
-                res.redirect('/movies')
-            };
-        };
-    });
-    // todo: handle scenario where movie already has a document in db.
-};
+        });
+}
+
+// function addFavorite(req, res) {
+//     var id = req.params.id
+//     Movie.findOne({apiId: id}, function(err, movie) {
+//         if (!movie) {
+//             movieApiUtil(id, function(err, response, body) {
+//                 let movie=new Movie({
+//                     title: JSON.parse(body).title,
+//                     poster: JSON.parse(body).poster_path, 
+//                     apiId: id,
+//                 })
+//                 movie.save(function(err){
+//                     req.user.favorites.push(movie); 
+//                     req.user.save();
+//                     res.redirect('/');
+//                 });
+//             })
+//         } else {
+//             if (req.user.favorites.indexOf(movie._id) === -1) {
+//             req.user.favorites.push(movie);
+//             req.user.save();
+//             res.redirect('/');
+//             } else {
+//                 res.redirect('/movies')
+//             };
+//         };
+//     });
+//     // todo: handle scenario where movie already has a document in db.
+// };
 
 function movieApiUtil(apiId, cb) {
     request(
@@ -68,4 +79,26 @@ module.exports = {
     getMovie, 
     movieApiUtil,
     addFavorite,
+}
+
+function getOrCreateMovie(apiId) {
+    return new Promise(function(resolve, reject) {
+        Movie.findOne({apiId: apiId}, function(err, movie) {
+            if (!movie) {
+                movieApiUtil(apiId, function(err, response, body) {
+                    let movieData = JSON.parse(body);
+                    let movie = new Movie({
+                        title: movieData.title,
+                        poster: movieData.poster_path, 
+                        apiId,
+                    });
+                    movie.save(function(err) {
+                        resolve(movie);
+                    });
+                })
+            } else {
+                resolve(movie);
+            }
+        });
+    });   
 }
