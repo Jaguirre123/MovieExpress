@@ -27,10 +27,12 @@ function addFavorite(req, res) {
         .then(function(movie) {
             movie.users.push(req.user._id);
             movie.save();
-            req.user.favorites.push(movie._id);
-            req.user.save();
+                if (req.user.favorites.indexOf(movie._id) === -1) { 
+                req.user.favorites.push(movie._id);
+                req.user.save();
             res.redirect('/');
-        });
+        };
+    })
 }
 
 function delFavorite(req, res) {
@@ -39,6 +41,16 @@ function delFavorite(req, res) {
         res.redirect(`/users/${req.user._id}`);
     });
 }
+function addComment(req, res) {
+    getOrCreateMovie(req.params.id)
+    .then(function(movie) {
+        let comment = new Comment(req.body);
+        movie.comments.push(comment)
+        movie.save();
+        req.user.push(user._id);
+        res.render('/:id');
+    });
+    }
 
 function movieApiUtil(apiId, cb) {
     request(
@@ -48,14 +60,6 @@ function movieApiUtil(apiId, cb) {
         }
     )
 };
-
-module.exports = {
-    nowShowing,
-    getMovie, 
-    movieApiUtil,
-    addFavorite,
-    delFavorite
-}
 
 function getOrCreateMovie(apiId) {
     return new Promise(function(resolve, reject) {
@@ -77,4 +81,13 @@ function getOrCreateMovie(apiId) {
             }
         });
     });   
+}
+
+module.exports = {
+    nowShowing,
+    getMovie, 
+    movieApiUtil,
+    addFavorite,
+    delFavorite, 
+    addComment
 }
