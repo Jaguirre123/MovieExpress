@@ -30,7 +30,7 @@ function addFavorite(req, res) {
                 if (req.user.favorites.indexOf(movie._id) === -1) { 
                 req.user.favorites.push(movie._id);
                 req.user.save();
-            res.redirect('/');
+                res.redirect(`/users/${req.user._id}`);
         };
     })
 }
