@@ -7,6 +7,7 @@ require('dotenv').config();
 var session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 var passport = require('passport');
+var methodOverride = require('method-override');
 
 
 var indexRouter = require('./routes/index');
@@ -39,7 +40,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(methodOverride('_method'));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

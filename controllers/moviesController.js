@@ -7,9 +7,6 @@ var User = require('../models/user');
 // var imgRootURL = 'https://image.tmdb.org/t/p/w500/';
 var rootURL = 'https://api.themoviedb.org/3/';
 
-
-
-
 function nowShowing(req, res) {
     request(
         rootURL + 'movie/now_playing?api_key=' + process.env.API_KEY, 
@@ -36,34 +33,12 @@ function addFavorite(req, res) {
         });
 }
 
-// function addFavorite(req, res) {
-//     var id = req.params.id
-//     Movie.findOne({apiId: id}, function(err, movie) {
-//         if (!movie) {
-//             movieApiUtil(id, function(err, response, body) {
-//                 let movie=new Movie({
-//                     title: JSON.parse(body).title,
-//                     poster: JSON.parse(body).poster_path, 
-//                     apiId: id,
-//                 })
-//                 movie.save(function(err){
-//                     req.user.favorites.push(movie); 
-//                     req.user.save();
-//                     res.redirect('/');
-//                 });
-//             })
-//         } else {
-//             if (req.user.favorites.indexOf(movie._id) === -1) {
-//             req.user.favorites.push(movie);
-//             req.user.save();
-//             res.redirect('/');
-//             } else {
-//                 res.redirect('/movies')
-//             };
-//         };
-//     });
-//     // todo: handle scenario where movie already has a document in db.
-// };
+function delFavorite(req, res) {
+        req.user.favorites.remove(req.params.id)
+        req.user.save(function(err) {
+        res.redirect(`/users/${req.user._id}`);
+    });
+}
 
 function movieApiUtil(apiId, cb) {
     request(
@@ -79,6 +54,7 @@ module.exports = {
     getMovie, 
     movieApiUtil,
     addFavorite,
+    delFavorite
 }
 
 function getOrCreateMovie(apiId) {
