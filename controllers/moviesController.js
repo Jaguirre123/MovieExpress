@@ -108,7 +108,7 @@ function getUpcoming(req, res) {
 }
 function recs(req, res) {
     User.find({_id: {$ne: req.user._id}})
-    .where("favorites").in(req.user.favorites)
+    .where("favorites").in(req.user.favorites).populate('favorites')
     .exec()
     .then(function(users) {
         var promises = [];
