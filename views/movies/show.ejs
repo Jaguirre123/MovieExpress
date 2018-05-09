@@ -37,14 +37,14 @@
 
         
 
-        <form method="GET" action="/movies/favorite/<%= movie.id %>">
+        <form method="GET" action="/movies/favorites/<%= movie.apiId %>">
             <input type="submit" class="btn btn-primary btn-block" value="&hearts; Add Favorite &hearts;">
         </form>   
         <br>
         <br>
         <hr>
         <h4>Leave a Comment:</h4>
-        <form role"form" method="POST" action="/movies/<%= movie.id %>">
+        <form role="form" method="POST" action="/movies/<%= movie.apiId %>/comments">
             <div class="form-group">
                 <textarea name="content" class="form-control" rows="3" required></textarea>
             </div>
@@ -52,22 +52,25 @@
         </form>
         <br>
         <br> 
-        <p><span class="badge"><2></span> Comments:</p><br>
-        <div class="row">
-            <div class="col-sm-2 text-center">`
-                <% if (ourMovie) {%>
-                    <% if(ourMovie.comments){ %>
-                        <% ourMovie.comments.forEach(function(comment) { %>    
+        <% if (movie) {%>
+            <div class="row">
+                <div class="col-sm-2 text-center">
+                    <% if(movie.comments.length > 0){ %>
+                        <p><span class="badge">(<%= movie.comments.length %>)</span> Comments:</p><br>
+                        <% movie.comments.forEach(function(comment) { %>    
                             <div class="col-sm-10">
-                                <img src= <%= user.avatar %> class="img-circle" height="65" width="65" alt="Avatar">
+                                <img src="<%= comment.user.avatar %>" class="rounded-circle" height="65" width="65" alt="Avatar">
                                 <h4> <%= comment.user.name %> <small> <%= comment.created_at %> </small></h4>
                                 <p> <%= comment.content %> </p>
                                 <br>
                             </div>
                         <% }) %>
-                    <% } %>
-                <% } %>
-        </div>
+                    <% } else { %>
+                        <h3>No comments yet!</h3>  
+                    <% } %>                                              
+                </div>
+            </div>
+        <% } %>
     </div>
 </div>
 <%- include("../_partials/footer")%>

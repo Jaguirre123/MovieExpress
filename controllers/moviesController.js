@@ -17,21 +17,12 @@ function nowShowing(req, res) {
 };
 
 function getMovie(req, res) {
-    Movie.findOne({apiId: req.params.id})
-        .then(function(movie){
-            if (movie) {
-                movieApiUtil(req.params.id, function(err, response, body) {
-                    res.render("movies/show", {movie: JSON.parse(body), ourMovie: movie, user: req.user});
-                })
-            } else {
-                movieApiUtil(req.params.id, function(err, response, body) {
-                    res.render('movies/show', {movie: JSON.parse(body), ourMovie: null, user: req.user});
-                });
-            }
-        })
-        .catch(function(err) { 
-            console.log(err)
-        })
+    getOrCreateMovie(req.params.id)
+        .then(function(movie) {
+            movie.populate('comments.user', function(err) {
+                res.render('movies/show', {movie: movie, user: req.user});
+            });
+        });
 }
 
 function addFavorite(req, res) {
@@ -56,9 +47,10 @@ function delFavorite(req, res) {
 function addComment(req, res) {
     getOrCreateMovie(req.params.id)
     .then(function(movie) {
-        movie.comments.push({content: req.body.content, user: req.user})
-        movie.save();
-        res.redirect('back');
+        movie.comments.push({content: req.body.content, user: req.user._id});
+        movie.save(function() {
+            res.redirect(`/movies/${movie.apiId}`);
+        });
     })
     .catch(err => console.log(`error is: ${err}`));
 }
@@ -105,6 +97,16 @@ function searchMovies(req, res) {
     )
 }
 
+function getUpcoming(req, res) {
+    console.log('its hittin it!')
+    request(
+        rootURL + 'movie/upcoming?api_key=' + process.env.API_KEY + '&language=en-US', 
+        function(err, response, body){
+            res.render('movies/index', {upcomingMovies: JSON.parse(body).results, user: req.user});
+        }
+    )  
+}
+
 module.exports = {
     nowShowing,
     getMovie, 
@@ -112,5 +114,6 @@ module.exports = {
     addFavorite,
     delFavorite, 
     addComment,
-    searchMovies
+    searchMovies,
+    getUpcoming
 }

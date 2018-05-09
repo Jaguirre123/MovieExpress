@@ -4,10 +4,9 @@ var User = require('../models/user');
 function getUser(req, res) {
     var id = req.params.id;
     User.findOne({_id: id}).populate('favorites').exec(function(err, userShow) {
-        console.log('USER FAVORITES', userShow.favorites)
-        res.render('users/show', {userShow: userShow, user: req.user})
-    })
-}
+        res.render('users/show', {userShow: userShow, user: req.user});
+    });
+};
 
 module.exports = {
     getUser

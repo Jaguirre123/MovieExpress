@@ -5,7 +5,11 @@
         <% movies.forEach(function(movie) { %>
             <div class="col-md-4">
                 <div class="card mb-4 box-shadow">
-                    <img class="card-img-top" src="https://image.tmdb.org/t/p/w500/<%= movie.poster_path %>" alt="Card image cap">
+                    <% if (movie.poster_path) { %>
+                        <img class="card-img-top" src="https://image.tmdb.org/t/p/w500/<%= movie.poster_path %>" alt="Card image cap">
+                    <% } else { %>
+                        <img class="card-img-top" src="https://i.imgur.com/lpb3wlX.jpg" alt="Card image cap">
+                    <% } %>
                     <div class="card-body">
                         <p class="card-text text-truncate"><%= movie.title %></p>
                         <hr>
