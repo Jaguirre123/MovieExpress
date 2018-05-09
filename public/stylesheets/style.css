@@ -18,6 +18,10 @@ hr {
 /* =======
 HEADER
 ========= */
+nav {
+  border: 1px solid white;
+  box-shadow: 0 0 10px white;
+}
 
 #our-logo {
   font-family: 'Bangers', cursive;
@@ -25,7 +29,55 @@ HEADER
   letter-spacing: 2px;
 }
 
+.uFlick {
+  border: 1px solid white;
+}
 
+.nav-link {
+  font-size: 20px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.nav-link:hover {
+  color: white !important;
+}
+
+.favesRec {
+  margin-top: 4%;
+}
+
+.google {
+  font-size: 20px;
+}
+
+.googleOne {
+  font-size: 20px;
+}
+
+.googleOne:hover {
+  color: white;
+}
+
+@media (max-width: 800px) {
+  nav .favesRec {
+    padding-left: 10px;
+  }
+
+  .favesRec:hover {
+    background-color: rgba(130, 130, 130, 0.8);
+    border-radius: 15px;
+  }
+
+  .dropdown:hover {
+    background-color: rgba(130, 130, 130, 0.8);
+    border-radius: 15px;
+  }
+
+  .uFlick {
+    margin-left: 10px;
+  }
+
+}
 /* =======
 FOOTER
 ========= */
@@ -35,15 +87,23 @@ footer {
   text-align: center;
   background-color: #353A3F;
   color: white;
+  border: 1px solid white;
+  box-shadow: 0 0 10px white;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 18px;
+  padding: 10px 10px;
 }
 
 .team {
-  color: #813772 ;
+  color: white;
+  font-family: 'Bangers', cursive;
+  font-size: 25px;
 }
 
 .team:hover {
-  color:#B82601;
+  color: #062F4F;
   text-decoration: underline;
+  -webkit-text-stroke: 1px white;
 }
 
 footer > ul {
@@ -118,6 +178,7 @@ MOVIES SHOW
   margin: 25px auto;
   border: 3px inset black;
   border-radius: 10px;
+  box-shadow: 0 0 10px white;
 }
 
 .col-sm-9 {
@@ -133,6 +194,10 @@ MOVIES SHOW
 .movieNameRate {
   display: inline-flex;
   color: black;
+}
+
+.movieNameRate > h3{
+  margin-top: 2%;
 }
 
 .movie {
