@@ -5,14 +5,15 @@
             <h1><%= movie.title %></h1>
             &nbsp;
             &nbsp;
+            &nbsp;
             <h3><i class="fas fa-star"></i><%= movie.vote_average %> / 10</h3>
         </div>
         <hr>
         <div class="maininfo">
-        <img src="https://image.tmdb.org/t/p/w500/<%= movie.poster_path %>" class="movie">
-        <div class="movieReview">
-            <p class="overView"><%= movie.overview %></p>
-            <div id="accordion">
+            <img src="https://image.tmdb.org/t/p/w500/<%= movie.poster_path %>" class="movie">
+            <div class="movieReview">
+                <p class="overView"><%= movie.overview %></p>
+                <div id="accordion">
                     <div class="card">
                         <div class="card-header" id="headingOne">
                             <h5 class="mb-0">
@@ -29,14 +30,8 @@
                         </div>
                     </div>
                 </div>
-        </div>
-      </div>                  
-                        
-
-
-
-        
-
+            </div>
+        </div>                  
         <form method="GET" action="/movies/favorite/<%= movie.id %>">
             <input type="submit" class="btn btn-primary btn-block" value="&hearts; Add Favorite &hearts;">
         </form>   
@@ -54,12 +49,12 @@
         <br> 
         <p><span class="badge"><2></span> Comments:</p><br>
         <div class="row">
-            <div class="col-sm-2 text-center">`
+            <div class="col-sm-2 text-center">
                 <% if (ourMovie) {%>
                     <% if(ourMovie.comments){ %>
                         <% ourMovie.comments.forEach(function(comment) { %>    
                             <div class="col-sm-10">
-                                <img src= <%= user.avatar %> class="img-circle" height="65" width="65" alt="Avatar">
+                                <img src= "<%= user.avatar %>" class="rounded-circle" alt="Avatar">
                                 <h4> <%= comment.user.name %> <small> <%= comment.created_at %> </small></h4>
                                 <p> <%= comment.content %> </p>
                                 <br>
@@ -67,6 +62,7 @@
                         <% }) %>
                     <% } %>
                 <% } %>
+            </div>
         </div>
     </div>
 </div>
