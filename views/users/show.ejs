@@ -21,10 +21,7 @@
 <div class="container-fluid">
     <div class="row content">
         <div class="col-sm-3 sidenav">
-            <h4><%= userShow.name %></h4>
-            <div class="well">
-                <img src="<%= userShow.avatar %>">
-            </div>
+                <img src="<%= userShow.avatar %>" class="userAvatar">
             <br>
         </div>
       
@@ -41,9 +38,9 @@
                                     <hr>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a href="" class="btn btn-sm btn-outline-secondary">View</a>
+                                            <a href="/movies/<%= favorite.apiId %>" class="btn btn-sm btn-outline-secondary">View</a>
                                             <form method="POST" action="/movies/favorites/<%= favorite._id %>?_method=DELETE">
-                                                <input type="submit" class="btn btn-sm btn-outline-secondary" value="Delete Favorite">
+                                                <input type="submit" class="btn btn-sm btn-outline-secondary" value="Delete">
                                             </form>
                                         </div>
                                     </div>
