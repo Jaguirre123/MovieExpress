@@ -17,9 +17,19 @@ function nowShowing(req, res) {
 };
 
 function getMovie(req, res) {
-    movieApiUtil(req.params.id, function(err, response, body) {
-        res.render('movies/show', {movie: JSON.parse(body), user: req.user});
-    });
+    Movie.findOne({apiId: req.params.id})
+        .then(function(movie){
+            if (movie) {
+                res.render("movies/show", {movie: movie, user: req.user});
+            } else {
+                movieApiUtil(req.params.id, function(err, response, body) {
+                    res.render('movies/show', {movie: JSON.parse(body), user: req.user});
+                });
+            }
+        })
+        .catch(function(err) { 
+            console.log(err)
+        })
 }
 
 function addFavorite(req, res) {
@@ -44,12 +54,11 @@ function delFavorite(req, res) {
 function addComment(req, res) {
     getOrCreateMovie(req.params.id)
     .then(function(movie) {
-        let comment = new Comment(req.body);
-        comment.user = req.user; 
-        movie.comments.push(comment)
+        movie.comments.push({content: req.body.content, user: req.user})
         movie.save();
         res.redirect('back');
-    });
+    })
+    .catch(err => console.log(`error is: ${err}`));
 }
 
 function movieApiUtil(apiId, cb) {
@@ -69,8 +78,10 @@ function getOrCreateMovie(apiId) {
                     let movieData = JSON.parse(body);
                     let movie = new Movie({
                         title: movieData.title,
-                        poster: movieData.poster_path, 
+                        poster_path: movieData.poster_path, 
                         apiId,
+                        overview: movieData.overview, 
+                        vote_average: movieData.vote_average,                      
                     });
                     movie.save(function(err) {
                         resolve(movie);
