@@ -33,15 +33,16 @@ FOOTER
 footer {
   /* display: inline-flex; */
   text-align: center;
-  background-color: lightgrey;
+  background-color: #353A3F;
+  color: white;
 }
 
 .team {
-  color: black ;
+  color: #813772 ;
 }
 
 .team:hover {
-  color: white;
+  color:#B82601;
   text-decoration: underline;
 }
 

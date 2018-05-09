@@ -13,7 +13,9 @@
                 <div class="carousel-inner">
                     <% movies.forEach(function(movie, index) { %>
                         <div class="carousel-item <%= !index ? 'active' : '' %>">
-                            <img class="d-block w-100 caroImg" src="https://image.tmdb.org/t/p/w500/<%= movie.poster_path %>">
+                            <a href="/movies/<%=movie.id%>">
+                                <img class="d-block w-100 caroImg" src="https://image.tmdb.org/t/p/w500/<%= movie.poster_path %>">
+                            </a>
                         </div>
                     <% }); %>
             </div>
