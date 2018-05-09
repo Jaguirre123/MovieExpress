@@ -19,6 +19,12 @@ hr {
 HEADER
 ========= */
 
+#our-logo {
+  font-family: 'Bangers', cursive;
+  font-size: 28px;
+  letter-spacing: 2px;
+}
+
 
 /* =======
 FOOTER
@@ -53,7 +59,7 @@ CAROUSEL
 ========= */
 
 .carousel {
-  background: linear-gradient(#062F4F, #B82601);
+  background: linear-gradient(black, #062F4F, black);
   border-radius: 20px;
   border: 3px inset grey;
   box-shadow: 0 4px 5px black;
@@ -109,9 +115,8 @@ MOVIES SHOW
   /* width: 85% !important; */
   background-color: white;
   margin: 25px auto;
-  border: 3px inset grey;
+  border: 3px inset black;
   border-radius: 10px;
-  box-shadow: 0 5px 10px white;
 }
 
 .col-sm-9 {
