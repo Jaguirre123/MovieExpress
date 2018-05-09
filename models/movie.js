@@ -10,7 +10,9 @@ var commentSchema = new Schema({
 
 var movieSchema = new Schema({
   title: String,
-  poster: String,
+  poster_path: String,
+  overview: String, 
+  vote_average: Number, 
   users: [ { type: Schema.Types.ObjectId, ref: 'User'} ],
   comments: [ commentSchema ],
   apiId: String
