@@ -5,14 +5,15 @@
             <h1><%= movie.title %></h1>
             &nbsp;
             &nbsp;
+            &nbsp;
             <h3><i class="fas fa-star"></i><%= movie.vote_average %> / 10</h3>
         </div>
         <hr>
         <div class="maininfo">
-        <img src="https://image.tmdb.org/t/p/w500/<%= movie.poster_path %>" class="movie">
-        <div class="movieReview">
-            <p class="overView"><%= movie.overview %></p>
-            <div id="accordion">
+            <img src="https://image.tmdb.org/t/p/w500/<%= movie.poster_path %>" class="movie">
+            <div class="movieReview">
+                <p class="overView"><%= movie.overview %></p>
+                <div id="accordion">
                     <div class="card">
                         <div class="card-header" id="headingOne">
                             <h5 class="mb-0">
@@ -30,13 +31,7 @@
                     </div>
                 </div>
         </div>
-      </div>                  
-                        
-
-
-
-        
-
+      </div>                   
         <form method="GET" action="/movies/favorites/<%= movie.apiId %>">
             <input type="submit" class="btn btn-primary btn-block" value="&hearts; Add Favorite &hearts;">
         </form>   
