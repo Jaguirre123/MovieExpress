@@ -5,8 +5,8 @@ var moviesCtrl = require('../controllers/moviesController');
 router.get('/', moviesCtrl.nowShowing);
 router.get('/search', moviesCtrl.searchMovies);
 router.get('/:id', moviesCtrl.getMovie);
-router.get('/favorite/:id', moviesCtrl.addFavorite);
+router.get('/favorites/:id', moviesCtrl.addFavorite);
 router.delete('/favorites/:id', moviesCtrl.delFavorite);
-router.post('/:id', moviesCtrl.addComment);
+router.post('/:id/comments', moviesCtrl.addComment);
 
 module.exports = router;
