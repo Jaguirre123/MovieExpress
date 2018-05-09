@@ -106,6 +106,25 @@ function getUpcoming(req, res) {
         }
     )  
 }
+function recs(req, res) {
+    User.find({_id: {$ne: req.user._id}})
+    .where("favorites").in(req.user.favorites)
+    .exec()
+    .then(function(users) {
+        var promises = [];
+        users.forEach(function(u) {
+            u.common = u.favorites.filter(f => req.user.favorites.some(uf => uf.equals(f)));
+            u.recs = u.favorites.filter(f => !u.common.some(c => c.equals(f)));
+            promises.push(u.populate('common recs').execPopulate());
+        }); 
+        Promise.all(promises).then(function() {
+            users.sort(function(a, b) {
+                return b.common.length - a.common.length; 
+            });
+            res.render('movies/recs', {users, user: req.user});
+        });
+    });
+};
 
 module.exports = {
     nowShowing,
@@ -115,5 +134,6 @@ module.exports = {
     delFavorite, 
     addComment,
     searchMovies,
-    getUpcoming
+    getUpcoming, 
+    recs
 }
