@@ -8,13 +8,38 @@
             <h1><%= movie.vote_average %> / 10</h1>
         </div>
         <hr>
+        <div class="maininfo">
+        <img src="https://image.tmdb.org/t/p/w500/<%= movie.poster_path %>" class="movie">
         <div class="movieReview">
-            <img src="https://image.tmdb.org/t/p/w500/<%= movie.poster_path %>" class="movie">
             <p class="overView"><%= movie.overview %></p>
+            <div id="accordion">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                More Info
+                            </button>
+                            </h5>
+                        </div>
+                    
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                                bah
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
+      </div>                  
+                        
+
+
+
+        
+
         <form method="GET" action="/movies/favorite/<%= movie.id %>">
-            <input type="submit" class="btn btn-success btn-block" value="&hearts; Add Favorite &hearts;">
-        </form>           
+            <input type="submit" class="btn btn-primary btn-block" value="&hearts; Add Favorite &hearts;">
+        </form>   
         <br>
         <br>
         <hr>
@@ -23,7 +48,7 @@
             <div class="form-group">
                 <textarea class="form-control" rows="3" required></textarea>
             </div>
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
         <br>
         <br> 
@@ -60,3 +85,4 @@
     </div>
 </div>
 <%- include("../_partials/footer")%>
+
