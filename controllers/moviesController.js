@@ -20,10 +20,12 @@ function getMovie(req, res) {
     Movie.findOne({apiId: req.params.id})
         .then(function(movie){
             if (movie) {
-                res.render("movies/show", {movie: movie, user: req.user});
+                movieApiUtil(req.params.id, function(err, response, body) {
+                    res.render("movies/show", {movie: JSON.parse(body), ourMovie: movie, user: req.user});
+                })
             } else {
                 movieApiUtil(req.params.id, function(err, response, body) {
-                    res.render('movies/show', {movie: JSON.parse(body), user: req.user});
+                    res.render('movies/show', {movie: JSON.parse(body), ourMovie: null, user: req.user});
                 });
             }
         })
