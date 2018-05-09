@@ -5,8 +5,10 @@ var commentSchema = new Schema({
     content: String,
     user: { type: Schema.Types.ObjectId, ref: 'User' }
 }, {
-    timestamps: true    
+    timestamps: true
 });
+
+
 
 var movieSchema = new Schema({
   title: String,
