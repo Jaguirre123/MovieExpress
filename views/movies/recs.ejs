@@ -1,67 +1,70 @@
 <%- include("../_partials/header")%>
-
-    <div class="container-fluid">
+<div class="container-fluid">
         <h1>Recommendations for
             <%= user.name %>
         </h1>
-        <div class="userRec">
-            <% users.forEach(function(u, index) { %>
-                <p>
-                    <%= u.name %> has the following films in common with you:
-                </p>
-                <img src="<%= u.avatar %>" class="rounded-circle" height="65" width="65" alt="Avatar">
-                <% u.favorites.forEach(function(f, index) { %>
+    <div class="userRec">
+        <% users.forEach(function(u, index) { %>
+                <h4>
+                    <a href="/users/<%=u._id%>">
+                        <img src="<%= u.avatar %>" class="rounded-circle" height="65" width="65" alt="Avatar">
+                        <b><%= u.name %></b>
+                    </a>
+                    has the following films in common with you:
+                </h4>
+                <hr>
+                <% u.common.forEach(function(f, index) { %>
                     <div class="row mb-2">
-                        <% u.common.forEach(function(f, index) { %>
-                            <div class="col-md-4">
-                                <div class="card mb-3 box-shadow small-movie">
-                                    <img class="card-img-top" src="https://image.tmdb.org/t/p/w500/<%= f.poster_path %>" alt="Card image cap">
-                                    <div class="card-body">
-                                        <p class="card-text text-truncate">
-                                            <%= f.title %>
-                                        </p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <hr>
-                                            <div class="btn-group">
-                                                <a href="/movies/<%=f.id%>" class="btn btn-sm btn-outline-secondary">View</a>
-                                            </div>
-                                            <small class="text-muted">
-                                                <i class="fas fa-star"></i>
-                                                <%= f.vote_average %> / 10</small>
+                        <div class="col-md-4">
+                            <div class="card mb-4 box-shadow small-movie">
+                                <img class="card-img-top" src="https://image.tmdb.org/t/p/w500/<%= f.poster_path %>" alt="Card image cap">
+                                <div class="card-body">
+                                    <p class="card-text text-truncate">
+                                        <%= f.title %>
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <hr>
+                                        <div class="btn-group">
+                                            <a href="/movies/<%=f.apiId%>" class="btn btn-sm btn-outline-secondary">View</a>
                                         </div>
+                                        <small class="text-muted">
+                                            <i class="fas fa-star"></i>
+                                            <%= f.vote_average %> / 10</small>
                                     </div>
                                 </div>
                             </div>
-                            <% }) %>
+                        </div>
                     </div>
-                    <div class="row mb-2">
-                        <p>
-                            Based on you and <%= u.name %> liking those films, you might want to check out:
-                        </p>
-                        <% u.recs.forEach(function(f, index) { %>
-                            <div class="col-md-4">
-                                <div class="card mb-3 box-shadow small-movie">
-                                    <img class="card-img-top" src="https://image.tmdb.org/t/p/w500/<%= f.poster_path %>" alt="Card image cap">
-                                    <div class="card-body">
-                                        <p class="card-text text-truncate">
-                                            <%= f.title %>
-                                        </p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <hr>
-                                            <div class="btn-group">
-                                                <a href="/movies/<%=f.id%>" class="btn btn-sm btn-outline-secondary">View</a>
-                                            </div>
-                                            <small class="text-muted">
-                                                <i class="fas fa-star"></i>
-                                                <%= f.vote_average %> / 10</small>
+                        <% }) %>
+                        <h4>
+                            Based on you and
+                            <%= u.name %> liking those films, you might want to check out:
+                        </h4>
+                        <hr>
+                <div class="row mb-2">
+                    <% u.recs.forEach(function(f, index) { %>
+                        <div class="col-md-4">
+                            <div class="card mb-3 box-shadow small-movie">
+                                <img class="card-img-top" src="https://image.tmdb.org/t/p/w500/<%= f.poster_path %>" alt="Card image cap">
+                                <div class="card-body">
+                                    <p class="card-text text-truncate">
+                                        <%= f.title %>
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <hr>
+                                        <div class="btn-group">
+                                            <a href="/movies/<%=f.id%>" class="btn btn-sm btn-outline-secondary">View</a>
                                         </div>
+                                        <small class="text-muted">
+                                            <i class="fas fa-star"></i>
+                                            <%= f.vote_average %> / 10</small>
                                     </div>
                                 </div>
                             </div>
-                            <% }) %>
-                    </div>
+                        </div>
                     <% }) %>
+                </div>
         </div>
-        <% }) %>
-    </div>
-    <%- include("../_partials/footer")%>
+    <% }) %>
+</div>
+<%- include("../_partials/footer")%>
