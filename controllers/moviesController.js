@@ -8,10 +8,21 @@ var rootURL = 'https://api.themoviedb.org/3/';
 function nowShowing(req, res) {
     request(
         rootURL + 'movie/now_playing?api_key=' + process.env.API_KEY, 
-        function(err, response, body){
-            res.render('movies/index', {movies: JSON.parse(body).results, user: req.user});
+        function(err, response, nowPlaying){
+            request(
+                rootURL + 'movie/upcoming?api_key='+ process.env.API_KEY,
+                function(err, response, upcoming) {
+                    res.render('movies/index', {
+                        nowPlaying: JSON.parse(nowPlaying).results,
+                        upcoming: JSON.parse(upcoming).results,
+                        user: req.user
+                    });
+                }
+            )  
         }
-    )   
+    )
+    // upcoming movies request
+    
 };
 
 function getMovie(req, res) {
