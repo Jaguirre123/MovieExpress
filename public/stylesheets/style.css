@@ -334,5 +334,9 @@ REC SHOW
 }
 
 .recCards {
-  display: block !important;
+  display: inline !important;
+}
+
+.recCards > small {
+  float: right;
 }
