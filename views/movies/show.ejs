@@ -58,12 +58,13 @@
                             <img src="<%= comment.user.avatar %>" class="rounded-circle cPic" height="75" width="75" alt="Avatar">
                         </div>
                         <div class="col-sm-10">
-                            <% let time = timeConverter(comment.createdAt) %>
-                            <h4> <%= comment.user.name %> - <small> <%= time %></small></h4>
+                            <h4> <%= comment.user.name %> - <small> <%= new Date(comment.createdAt).toLocaleString().replace(/:\d\d /, ' ',) %></small></h4>
                             <p> <%= comment.content %> </p>
-                            <form method="POST" action="/movies/<%= movie.apiId %>/comments/<%= comment._id%>?_method=DELETE">
-                                <input type="submit" class="btn btn-sm btn-danger float-right" value="Delete">
-                            </form>
+                            <% if (comment.user.id == user.id){ %>
+                                <form method="POST" action="/movies/<%= movie.apiId %>/comments/<%= comment._id%>?_method=DELETE">
+                                    <input type="submit" class="btn btn-sm btn-danger float-right" value="Delete">
+                                </form>
+                            <% } %>
                             <br>
                         </div>
                     </div>
