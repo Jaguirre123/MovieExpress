@@ -13,8 +13,8 @@
                 has the following films in common with you:
             </h4>
             <hr>
+            <div class="row mb-2">
             <% u.common.forEach(function(f, index) { %>
-                <div class="row mb-2">
                     <div class="col-md-4">
                         <div class="card mb-4 box-shadow small-movie">
                             <img class="card-img-top" src="https://image.tmdb.org/t/p/w500/<%= f.poster_path %>" alt="Card image cap">
@@ -32,8 +32,8 @@
                             </div>
                         </div>
                     </div>
+                    <% }) %>
                 </div>
-            <% }) %>
             <h4>
                 Based on you and
                 <%= u.name %> liking those films, you might want to check out:
