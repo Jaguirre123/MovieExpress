@@ -60,7 +60,7 @@
                             <h4> <%= comment.user.name %> - <small> <%= time %></small></h4>
                             <p> <%= comment.content %> </p>
                             <form method="POST" action="/movies/<%= movie.apiId %>/comments/<%= comment._id%>?_method=DELETE">
-                                <input type="submit" class="btn btn-sm btn-danger" value="Delete">
+                                <input type="submit" class="btn btn-sm btn-danger float-right" value="Delete">
                             </form>
                             <br>
                         </div>
