@@ -1,43 +1,109 @@
 <%- include("../_partials/header")%>
-<div class="container-fluid">
-    <div class="col-sm-9">
-        <div class="movieNameRate">
-            <h1><%= movie.title %></h1>
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            <% if (movie.vote_average >= 1) { %>
-                <h3><i class="fas fa-star"></i><%= movie.vote_average %> / 10</h3>
-            <% } %>
-        </div>
-        <hr>
+    <div class="container-fluid">
+        <div class="col-sm-9">
+            <div class="movieNameRate">
+                <h1>
+                    <%= movie.title %>
+                </h1>
+                &nbsp; &nbsp; &nbsp;
+                <% if (movie.vote_average >= 1) { %>
+                    <h3>
+                        <i class="fas fa-star"></i>
+                        <%= movie.vote_average %> / 10</h3>
+                    <% } %>
+            </div>
+            <hr>
 
-        <div class="maininfo">
-            <% if (movie.poster_path) { %>
-                <img src="https://image.tmdb.org/t/p/w500/<%= movie.poster_path %>" class="movie">
-            <% } else { %>
-                <img class="movie" src="https://i.imgur.com/lpb3wlX.jpg" alt="Card image cap">
-            <% } %>
-            <div class="movieReview">
-                <p class="overView"><%= movie.overview %></p>
-                <div id="accordion">
-                    <div class="card">
-                        <div class="card-header" id="headingOne">
-                            <h5 class="mb-0">
-                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                Movie Details
-                            </button>
-                            </h5>
-                        </div>
-                    
-                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                            <div class="card-body">
-                                <% details.cast.forEach(function(castMember) { %>
-                                    <h5><b><%= castMember.character %></b> Played by: <%= castMember.name %></h5>
-                                <% }) %>
+            <div class="maininfo">
+                <% if (movie.poster_path) { %>
+                    <img src="https://image.tmdb.org/t/p/w500/<%= movie.poster_path %>" class="movie">
+                <% } else { %>
+                    <img class="movie" src="https://i.imgur.com/lpb3wlX.jpg" alt="Card image cap">
+                <% } %>
+                    <div class="movieReview">
+                        <p class="overView"><%= movie.overview %></p>
+                            <div id="accordion">
+                                <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                Cast Details
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Character</th>
+                                                        <th scope="col">Actor</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% details.cast.forEach(function(castMember) { %>
+                                                        <tr>
+                                                            <td>
+                                                                <%= castMember.character %>
+                                                            </td>
+                                                            <td>
+                                                                <%= castMember.name %>
+                                                            </td>
+                                                        </tr>
+                                                        <% }) %>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="headingTwo">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                                Crew Details
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Job</th>
+                                                        <th scope="col">Name</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% details.crew.forEach(function(crewMember) { %>
+                                                        <tr>
+                                                            <td>
+                                                                <%= crewMember.job %>
+                                                            </td>
+                                                            <td>
+                                                                <%= crewMember.name %>
+                                                            </td>
+                                                        </tr>
+                                                        <% }) %>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+
+            <form method="GET" action="/movies/favorites/<%= movie.apiId %>">
+                <input type="submit" class="btn btn-primary btn-block" value="&hearts; Add Favorite &hearts;">
+            </form>
+            <a href="https://www.fandango.com/search/?q=<%= movie.title %>" class="btn btn-primary btn-block" target="blank">Buy Ticket</a>
+            <br>
+            <br>
+            <hr>
+            <h4>Leave a Comment:</h4>
+            <form role="form" method="POST" action="/movies/<%= movie.apiId %>/comments">
+                <div class="form-group">
+                    <textarea name="content" class="form-control" rows="3" required></textarea>
                 </div>
         </div>
       </div>                   
@@ -75,16 +141,15 @@
                                 </form>
                             <% } %>
                             <br>
-                        </div>
-                    </div>
-                <% }) %>
-            <% } else { %>
-                <center>
-                    <h3>No comments yet!</h3>
-                </center>  
-            <% } %>                                              
-        <% } %>
-    </div>
-</div>
-<%- include("../_partials/footer")%>
 
+                        </div>
+                        <% }) %>
+                            <% } else { %>
+                                <center>
+                                    <h3>No comments yet!</h3>
+                                </center>
+                                <% } %>
+                                    <% } %>
+        </div>
+    </div>
+    <%- include("../_partials/footer")%>
