@@ -1,50 +1,64 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Movie Express</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">        <link rel='stylesheet' href='/stylesheets/style.css' />
-        <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Righteous" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Bangers|Luckiest+Guy" rel="stylesheet">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>    
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" id="our-logo" href="/movies">Movie Express <i class="fas fa-film"></i></a>
-    <button class="navbar-toggler box" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon bars"></span>
-    </button>   
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <% if (user) { %>
-            <li class="nav-item favesRec">
-                <a class="nav-link" href="/users/<%= user._id %>">Favorites</a>
-            </li>
-            <li class="nav-item favesRec">
-                <a class="nav-link" href="/movies/recs">Recommendations</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="<%= user.avatar %>" class="rounded-circle uFlick">
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <center>
-                        <%= user.name %>
-                        <hr>
-                        <a href="/logout" class="google">Logout</a>
-                    </center>
-                </div>
-            </li>   
-            <% } else { %>
-                <li class="nav-item"><a href="/auth/google" class="googleOne">Login with Google</a></li>
-            <% } %>
-        </ul>
-        <form class="form-inline my-2 my-lg-0" action="/movies/search" method="GET">
-            <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search for a movie..." aria-label="Search" required>
-            <button id="nav-btn" class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
-</nav>
-<body>
+
+<head>
+    <title>Movie Express</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9"
+        crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Righteous" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Bangers|Luckiest+Guy" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" id="our-logo" href="/movies">Movie Express
+            <i class="fas fa-film"></i>
+        </a>
+        <button class="navbar-toggler box" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <% if (user) { %>
+                    <li class="nav-item favesRec">
+                        <a class="nav-link" href="/users/<%= user._id %>">Favorites</a>
+                    </li>
+                    <li class="nav-item favesRec">
+                        <a class="nav-link" href="/movies/recs">Recommendations</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <img src="<%= user.avatar %>" class="rounded-circle uFlick">
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <center>
+                                <%= user.name %>
+                                    <hr>
+                                    <a href="/logout" class="google">Logout</a>
+                            </center>
+                        </div>
+                    </li>
+                    <% } else { %>
+                        <li class="nav-item">
+                            <a href="/auth/google" class="googleOne">Login with Google</a>
+                        </li>
+                        <% } %>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action="/movies/search" method="GET">
+                <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search for a movie..." aria-label="Search" required>
+                <button id="nav-btn" class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <body>

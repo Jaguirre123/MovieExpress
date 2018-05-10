@@ -1,15 +1,12 @@
-
 var request = require('request');
 var Movie = require('../models/movie');
 var User = require('../models/user');
-// var imgRootURL = 'https://image.tmdb.org/t/p/w500/';
 var rootURL = 'https://api.themoviedb.org/3/';
 
 function nowShowing(req, res) {
     request(
         rootURL + 'movie/now_playing?api_key=' + process.env.API_KEY, 
         function(err, response, nowPlaying){
-            // upcoming movies request
             request(
                 rootURL + 'movie/upcoming?api_key='+ process.env.API_KEY,
                 function(err, response, upcoming) {
@@ -35,7 +32,7 @@ function getMovie(req, res) {
                 res.render('movies/show', {movie: movieDoc, details: movieDetails, user: req.user});
             });
         });
-}
+};
 
 function addFavorite(req, res) {
     getOrCreateMovie(req.params.id)
@@ -46,16 +43,16 @@ function addFavorite(req, res) {
                 req.user.favorites.push(movie._id);
                 req.user.save();
                 res.redirect(`/users/${req.user._id}`);
-        };
-    })
-}
+                };
+        });
+};
 
 function delFavorite(req, res) {
     req.user.favorites.remove(req.params.id)
     req.user.save(function(err) {
         res.redirect(`/users/${req.user._id}`);
     });
-}
+};
 
 function addComment(req, res) {
     getOrCreateMovie(req.params.id)
@@ -66,16 +63,16 @@ function addComment(req, res) {
         });
     })
     .catch(err => console.log(`error is: ${err}`));
-}
+};
 
 function delComment(req, res) {
     Movie.findOne({apiId: req.params.apiId}, function(err, movie) {
-        movie.comments.id(req.params.id).remove()
+        movie.comments.id(req.params.id).remove();
         movie.save(function(err) {
             res.redirect(`/movies/${movie.apiId}`);
         });
     })
-}
+};
 
 function movieApiUtil(apiId, cb) {
     request(
@@ -83,7 +80,7 @@ function movieApiUtil(apiId, cb) {
         function (err, response, body) {
             cb(err, response, body);
         }
-    )
+    );
 };
 
 function getApiDetails(apiId) {
@@ -95,11 +92,11 @@ function getApiDetails(apiId) {
                     reject(err)
                 } else {
                     resolve(body)
-                }
+                };
             }
-        )
-    })
-}
+        );
+    });
+};
 
 function getOrCreateMovie(apiId) {
     return new Promise(function(resolve, reject) {
@@ -117,13 +114,13 @@ function getOrCreateMovie(apiId) {
                     movie.save(function(err) {
                         resolve(movie);
                     });
-                })
+                });
             } else {
                 resolve(movie);
-            }
+            };
         });
     });   
-}
+};
 
 function searchMovies(req, res) {
     request(
@@ -131,8 +128,8 @@ function searchMovies(req, res) {
         function(err, response, body) {
             res.render('movies/results', {movies: JSON.parse(body).results, user: req.user});
         }
-    )
-}
+    );
+};
 
 function recs(req, res) {
     User.find({_id: {$ne: req.user._id}})
@@ -164,4 +161,4 @@ module.exports = {
     delComment,
     searchMovies, 
     recs
-}
+};

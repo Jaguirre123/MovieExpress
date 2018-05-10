@@ -19,7 +19,6 @@ passport.use(new GoogleStrategy({
             return cb(null, user);
         }
     } else {
-        // we have a new User via OAuth!
         var newUser = new User({
             name: profile.displayName,
             email: profile.emails[0].value,
