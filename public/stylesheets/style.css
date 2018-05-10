@@ -191,7 +191,6 @@ MOVIES INDEX
 MOVIES SHOW
 ========= */
 .container-fluid {
-  /* width: 85% !important; */
   background-color: white;
   margin: 25px auto;
   border: 3px inset black;
@@ -251,7 +250,6 @@ MOVIES SHOW
 
 .comments {
   border-top: 1px solid black;
-  /* border-bottom: 1px solid black; */
   padding: 10px;
 }
 
@@ -344,4 +342,34 @@ REC SHOW
 
 .recCards > small {
   float: right;
+}
+
+/* =======
+RESULTS.EJS 
+========= */
+.noImgAv {
+  height: 620px;
+  width:100%;
+}
+
+@media (max-width: 1350px) {
+  .noImgAv {
+    height: 550px;
+  }
+}
+
+@media (max-width: 1250px) {
+  .noImgAv {
+    height: 515px;
+  }
+}
+@media (max-width: 1150px) {
+  .noImgAv {
+    height: 420px;
+  }
+}
+@media (max-width: 1000px) {
+  .noImgAv {
+    height: 380px;
+  }
 }
