@@ -16,8 +16,6 @@ router.get('/auth/google', passport.authenticate(
 router.get('/oauth2callback', passport.authenticate(
   'google',
   {
-    // AYE THIS MIGHT CHANGE! pce out.
-    // figure out views. route may change. TBD
     successRedirect : '/movies',
     failureRedirect : '/movies'
   }

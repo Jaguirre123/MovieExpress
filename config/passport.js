@@ -8,8 +8,8 @@ passport.use(new GoogleStrategy({
     callbackURL: process.env.GOOGLE_CALLBACK
 }, function(accessToken, refreshToken, profile, cb) {
     User.findOne({ 'googleId': profile.id }, function(err, user) {
-      if (err) return cb(err);
-      if (user) {
+    if (err) return cb(err);
+    if (user) {
         if (!user.avatar) {
             user.avatar = profile.photos[0].value;
             user.save(function(err) {
@@ -21,18 +21,18 @@ passport.use(new GoogleStrategy({
     } else {
         // we have a new User via OAuth!
         var newUser = new User({
-          name: profile.displayName,
-          email: profile.emails[0].value,
-          avatar: profile.photos[0].value,
-          googleId: profile.id
+            name: profile.displayName,
+            email: profile.emails[0].value,
+            avatar: profile.photos[0].value,
+            googleId: profile.id
         });
         newUser.save(function(err) {
-          if (err) return cb(err);
-          return cb(null, newUser);
+            if (err) return cb(err);
+            return cb(null, newUser);
         });
-      }
+    }
     });
-  }
+}
 ));
 
 passport.serializeUser(function(user, done) {
