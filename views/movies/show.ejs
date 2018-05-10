@@ -59,7 +59,7 @@
         <br> 
         <% if (movie) {%>  
             <% if(movie.comments.length > 0){ %>
-                <h3 style="display: inline-flex;" class="badge-light"><span class="badge badge-dark"><%= movie.comments.length %></span> Comments:</h3><br>
+                <h3 style="display: inline-flex;" class="badge-light">Comments:&nbsp;<span class="badge badge-dark"><%= movie.comments.length %></span></h3><br>
                 <% movie.comments.reverse().forEach(function(comment) { %>
                     <div class="row comments">
                         <div class="col-sm-2 text-center">    
