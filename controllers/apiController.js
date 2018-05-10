@@ -23,6 +23,20 @@ function ranking(req, res) {
     });
 }
 
+function getAllMovies(req, res) {
+    Movie.find({}, function(err, movies){
+        res.status(200).json(movies);
+    });
+}
+
+function getComment(req, res) {
+    Movie.findById(req.params.id, function(err, movie){
+        res.status(200).json(movie);
+    });
+}
+
 module.exports = {
-    ranking 
+    ranking,
+    getAllMovies,
+    getComment
 };
