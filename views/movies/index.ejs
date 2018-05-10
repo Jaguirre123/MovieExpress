@@ -57,9 +57,6 @@
                 <span class="sr-only">Next</span>
             </a>
     </div>
-
-
-
     <div class="row mb-2">
         <% movies.forEach(function(movie) { %>
         <div class="col-md-4">
@@ -72,12 +69,13 @@
                         <div class="btn-group">
                             <a href="/movies/<%=movie.id%>" class="btn btn-sm btn-outline-secondary">View</a>
                         </div>
-                        <small class="text-muted"><i class="fas fa-star"></i> <%= movie.vote_average %> / 10</small>
+                        <% if (movie.vote_average >= 1) { %>
+                            <small class="text-muted"><i class="fas fa-star"></i> <%= movie.vote_average %> / 10</small>
+                        <% } %>
                     </div>
                 </div>
             </div>
-        </div>
-    
+        </div> 
         <% }) %>
     </div>
 </div>

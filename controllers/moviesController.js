@@ -2,7 +2,6 @@
 // var nowPlaying = the response from that thing ^^
 // make get request blah blah nowPlaying.forEach(movie => <div>movie.title</div>)
 var request = require('request');
-var timeConverter = require('./../utils/timeConverter');
 var Movie = require('../models/movie');
 var User = require('../models/user');
 // var imgRootURL = 'https://image.tmdb.org/t/p/w500/';
@@ -21,7 +20,7 @@ function getMovie(req, res) {
     getOrCreateMovie(req.params.id)
         .then(function(movie) {
             movie.populate('comments.user', function(err) {
-                res.render('movies/show', {movie: movie, user: req.user, timeConverter: timeConverter});
+                res.render('movies/show', {movie: movie, user: req.user});
             });
         });
 }
