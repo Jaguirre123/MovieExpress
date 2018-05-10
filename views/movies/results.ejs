@@ -1,6 +1,6 @@
 <%- include("../_partials/header")%>
 <div class="container-fluid">
-    <h1>Search Results Page</h1>
+    <h1>Search Results: <span class="badge badge-dark"><%= movies.length %></span></h1>
     <div class="row mb-2">
         <% movies.forEach(function(movie) { %>
             <div class="col-md-4">
@@ -8,7 +8,7 @@
                     <% if (movie.poster_path) { %>
                         <img class="card-img-top" src="https://image.tmdb.org/t/p/w500/<%= movie.poster_path %>" alt="Card image cap">
                     <% } else { %>
-                        <img class="card-img-top" src="https://i.imgur.com/lpb3wlX.jpg" alt="Card image cap">
+                        <img class="card-img-top noImgAv" src="https://i.imgur.com/lpb3wlX.jpg" alt="Card image cap">
                     <% } %>
                     <div class="card-body">
                         <p class="card-text text-truncate"><%= movie.title %></p>

@@ -1,45 +1,55 @@
-<%- include("../_partials/header")%>
 
-<div class="container-fluid">
-    <div class="row content">
-        <div class="col-sm-1">
-                <img src="<%= userShow.avatar %>" class="userAvatar">
-        </div>
-                <h2><small><%= userShow.name%>'s Favorites</small></h2> 
-                <hr> 
+<%- include("../_partials/header")%>
+    <div class="container-fluid">
+        <div class="row content" style="display: block;">
+                <% if (userShow.id !== user.id) { %> 
+                    <img src="<%= userShow.avatar %>" class="rounded-circle oUFlicks">
+                    <center>
+                        <h1><small><%= userShow.name%>'s Favorite Movies: <span class="badge badge-dark"><%= userShow.favorites.length %></span></small></h1>                            
+                    </center>
+                    <% } else { %>
+                    <center>
+                        <h1><small>Your Favorite Movies: <span class="badge badge-dark"><%= userShow.favorites.length %></span></small></h1>
+                    </center>
+                <% } %>
+            <hr>
             <br>
         </div>
         <div class="col-sm-9">
             <div class="row mb-2">
-                <% userShow.favorites.forEach(function(favorite) { %>               
-                        <div class="col-md-4">
-                            <div class="card mb-4 box-shadow">
-                                <img class="card-img-top" src="https://image.tmdb.org/t/p/w500/<%= favorite.poster_path %>" alt="Card image cap">
-                                <div class="card-body">
-                                    <p class="card-text text-truncate"><%= favorite.title %></p>
-                                    <hr>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <a href="/movies/<%= favorite.apiId %>" class="btn btn-sm btn-outline-secondary">View</a>
-                                            <% if (userShow.id == user.id) { %>
+                <% userShow.favorites.forEach(function(favorite) { %>
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top" src="https://image.tmdb.org/t/p/w500/<%= favorite.poster_path %>" alt="Card image cap">
+                            <div class="card-body">
+                                <p class="card-text text-truncate">
+                                    <%= favorite.title %>
+                                </p>
+                                <hr>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a href="/movies/<%= favorite.apiId %>" class="btn btn-sm btn-outline-secondary">View</a>
+                                        <% if (userShow.id == user.id) { %>
                                             <form method="POST" action="/movies/favorites/<%= favorite._id %>?_method=DELETE">
                                                 <input type="submit" class="btn btn-sm btn-outline-secondary" value="Delete">
                                             </form>
                                             <% } %>
-                                        </div>
-                                        <% if (favorite.vote_average >= 1) { %>
-                                            <small class="text-muted"><i class="fas fa-star"></i> <%= favorite.vote_average %> / 10</small>
-                                        <% } %>
                                     </div>
+                                    <% if (favorite.vote_average >= 1) { %>
+                                        <small class="text-muted">
+                                            <i class="fas fa-star"></i>
+                                            <%= favorite.vote_average %> / 10</small>
+                                        <% } %>
                                 </div>
                             </div>
                         </div>
-                    
+                    </div>
+
                     <% }); %>
             </div>
         </div>
     </div>
-</div> 
+    </div>
 
 
-<%- include("../_partials/footer")%>
+    <%- include("../_partials/footer")%>

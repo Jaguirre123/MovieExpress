@@ -3,6 +3,7 @@ body {
   font: 14px "Josefin Sans", Helvetica, Arial, sans-serif;
   background: #062F4F;
 }
+
 a {
   color: #062F4F; 
 }
@@ -12,6 +13,10 @@ h1 {
 }
 h2 {
   margin-top: 5px;
+}
+
+h3 {
+  margin-top: 10px;
 }
 
 hr {
@@ -28,7 +33,12 @@ nav {
   box-shadow: 0 0 10px white;
 }
 #nav-btn {
-  color: #813772;
+  color: white;
+}
+
+#nav-btn:hover {
+ color: #813772;
+ border: 1px solid #813772;
 }
 
 #our-logo {
@@ -181,7 +191,6 @@ MOVIES INDEX
 MOVIES SHOW
 ========= */
 .container-fluid {
-  /* width: 85% !important; */
   background-color: white;
   margin: 25px auto;
   border: 3px inset black;
@@ -241,14 +250,23 @@ MOVIES SHOW
 
 .comments {
   border-top: 1px solid black;
-  /* border-bottom: 1px solid black; */
   padding: 10px;
 }
 
 .cPic {
   border: 1px inset grey;
   box-shadow: 0 0 10px black;
-  margin: 25% 0 25% 0;
+  margin: 5% 0 10% 0;
+}
+
+.commentsUser {
+  border-right: 1px solid black;
+}
+
+.commentP {
+  font-size: 15px;
+  word-wrap: break-word;
+  line-height: 1.5;
 }
 
 @media (max-width: 800px) {
@@ -279,6 +297,11 @@ MOVIES SHOW
     width: 100% !important;
     margin: 0 auto;
   }
+
+  .commentsUser {
+    border: none;
+    text-align: center;
+  }
 }
 
 @media (max-width: 700px) {
@@ -303,6 +326,10 @@ MOVIES SHOW
     margin: 35px auto;
   }
 
+  .comments {
+    text-align: center;
+  }
+
 }
 
 /* =======
@@ -320,6 +347,14 @@ USERS SHOW
   border: 2px inset #062F4F;
 }
 
+.oUFlicks {
+  margin: 10px 10px -45px 10px;
+  border: 2px solid black;
+  box-shadow: 0 0 10px black;
+  height: 100px;
+  width: 100px;
+}
+
 /* =======
 REC SHOW
 ========= */
@@ -334,4 +369,34 @@ REC SHOW
 
 .recCards > small {
   float: right;
+}
+
+/* =======
+RESULTS.EJS 
+========= */
+.noImgAv {
+  height: 620px;
+  width:100%;
+}
+
+@media (max-width: 1350px) {
+  .noImgAv {
+    height: 550px;
+  }
+}
+
+@media (max-width: 1250px) {
+  .noImgAv {
+    height: 515px;
+  }
+}
+@media (max-width: 1150px) {
+  .noImgAv {
+    height: 420px;
+  }
+}
+@media (max-width: 1000px) {
+  .noImgAv {
+    height: 380px;
+  }
 }

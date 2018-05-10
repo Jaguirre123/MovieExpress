@@ -9,6 +9,7 @@ function nowShowing(req, res) {
     request(
         rootURL + 'movie/now_playing?api_key=' + process.env.API_KEY, 
         function(err, response, nowPlaying){
+            // upcoming movies request
             request(
                 rootURL + 'movie/upcoming?api_key='+ process.env.API_KEY,
                 function(err, response, upcoming) {
@@ -21,15 +22,17 @@ function nowShowing(req, res) {
             )  
         }
     )
-    // upcoming movies request
-    
 };
 
 function getMovie(req, res) {
-    getOrCreateMovie(req.params.id)
+    let apiCalls = Promise.all([getOrCreateMovie(req.params.id), getApiDetails(req.params.id)]);
+    apiCalls
         .then(function(movie) {
-            movie.populate('comments.user', function(err) {
-                res.render('movies/show', {movie: movie, user: req.user});
+            console.log(movie.length);
+            let movieDoc = movie[0];
+            let movieDetails = JSON.parse(movie[1]);
+            movieDoc.populate('comments.user', function(err) {
+                res.render('movies/show', {movie: movieDoc, details: movieDetails, user: req.user});
             });
         });
 }
@@ -83,6 +86,21 @@ function movieApiUtil(apiId, cb) {
     )
 };
 
+function getApiDetails(apiId) {
+    return new Promise(function(resolve, reject) {
+        request(
+            `${rootURL}movie/${apiId}/credits?api_key=${process.env.API_KEY}`,
+            function (err, response, body) {
+                if (err) {
+                    reject(err)
+                } else {
+                    resolve(body)
+                }
+            }
+        )
+    })
+}
+
 function getOrCreateMovie(apiId) {
     return new Promise(function(resolve, reject) {
         Movie.findOne({apiId: apiId}, function(err, movie) {
@@ -116,15 +134,6 @@ function searchMovies(req, res) {
     )
 }
 
-function getUpcoming(req, res) {
-    console.log('its hittin it!')
-    request(
-        rootURL + 'movie/upcoming?api_key=' + process.env.API_KEY + '&language=en-US', 
-        function(err, response, body){
-            res.render('movies/index', {upcomingMovies: JSON.parse(body).results, user: req.user});
-        }
-    )  
-}
 function recs(req, res) {
     User.find({_id: {$ne: req.user._id}})
     .where("favorites").in(req.user.favorites).populate('favorites')
@@ -153,7 +162,6 @@ module.exports = {
     delFavorite, 
     addComment,
     delComment,
-    searchMovies,
-    getUpcoming, 
+    searchMovies, 
     recs
 }
