@@ -25,10 +25,14 @@ function nowShowing(req, res) {
 };
 
 function getMovie(req, res) {
-    getOrCreateMovie(req.params.id)
+    let apiCalls = Promise.all([getOrCreateMovie(req.params.id), getApiDetails(req.params.id)]);
+    apiCalls
         .then(function(movie) {
-            movie.populate('comments.user', function(err) {
-                res.render('movies/show', {movie: movie, user: req.user});
+            console.log(movie.length);
+            let movieDoc = movie[0];
+            let movieDetails = JSON.parse(movie[1]);
+            movieDoc.populate('comments.user', function(err) {
+                res.render('movies/show', {movie: movieDoc, details: movieDetails, user: req.user});
             });
         });
 }
@@ -81,6 +85,21 @@ function movieApiUtil(apiId, cb) {
         }
     )
 };
+
+function getApiDetails(apiId) {
+    return new Promise(function(resolve, reject) {
+        request(
+            `${rootURL}movie/${apiId}/credits?api_key=${process.env.API_KEY}`,
+            function (err, response, body) {
+                if (err) {
+                    reject(err)
+                } else {
+                    resolve(body)
+                }
+            }
+        )
+    })
+}
 
 function getOrCreateMovie(apiId) {
     return new Promise(function(resolve, reject) {

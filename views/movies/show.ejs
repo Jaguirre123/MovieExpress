@@ -27,7 +27,9 @@
                     
                         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                             <div class="card-body">
-                                bah
+                                <% details.cast.forEach(function(castMember) { %>
+                                    <h5><b><%= castMember.character %></b> Played by: <%= castMember.name %></h5>
+                                <% }) %>
                             </div>
                         </div>
                     </div>
