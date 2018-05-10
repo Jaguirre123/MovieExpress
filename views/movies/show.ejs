@@ -6,7 +6,9 @@
             &nbsp;
             &nbsp;
             &nbsp;
-            <h3><i class="fas fa-star"></i><%= movie.vote_average %> / 10</h3>
+            <% if (movie.vote_average >= 1) { %>
+                <h3><i class="fas fa-star"></i><%= movie.vote_average %> / 10</h3>
+            <% } %>
         </div>
         <hr>
         <div class="maininfo">
@@ -67,7 +69,9 @@
                     </div>
                 <% }) %>
             <% } else { %>
-                <h3>No comments yet!</h3>  
+                <center>
+                    <h3>No comments yet!</h3>
+                </center>  
             <% } %>                                              
         <% } %>
     </div>
