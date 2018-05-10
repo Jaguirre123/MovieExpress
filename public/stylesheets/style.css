@@ -2,7 +2,6 @@ body {
   padding: 50px;
   font: 14px "Josefin Sans", Helvetica, Arial, sans-serif;
   background: #062F4F;
-  /* background: linear-gradient(to bottom right, #062F4F, white); */
 }
 a {
   color: #062F4F; 
@@ -13,10 +12,6 @@ h1 {
 }
 h2 {
   margin-top: 5px;
-}
-
-a {
-  color: #00B7FF;
 }
 
 hr {
@@ -260,9 +255,9 @@ MOVIES SHOW
   .movieReview {
     display: block !important;
     text-align: center;
-   }
+  }
 
-   .movie {
+  .movie {
     width: 100%;
     height: 500px;
   }
@@ -296,7 +291,7 @@ MOVIES SHOW
   }
 
   .movieReview {
-   display: block !important;
+    display: block !important;
   }
 
   .movie {
