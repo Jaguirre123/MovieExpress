@@ -332,3 +332,11 @@ REC SHOW
 .small-movie {
   width: 75%;
 }
+
+.recCards {
+  display: inline !important;
+}
+
+.recCards > small {
+  float: right;
+}
