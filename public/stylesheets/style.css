@@ -311,3 +311,11 @@ USERS SHOW
   margin: 18px auto;
   border: 2px inset #062F4F;
 }
+
+/* =======
+REC SHOW
+========= */
+
+.small-movie {
+  width: 75%;
+}
