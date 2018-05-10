@@ -18,7 +18,7 @@
                         <div class="card-header" id="headingOne">
                             <h5 class="mb-0">
                             <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                More Info
+                                Movie Details
                             </button>
                             </h5>
                         </div>
@@ -59,7 +59,9 @@
                             <% let time = timeConverter(comment.createdAt) %>
                             <h4> <%= comment.user.name %> - <small> <%= time %></small></h4>
                             <p> <%= comment.content %> </p>
-                            <button class="btn btn-sm btn-danger">Delete</button>
+                            <form method="POST" action="/movies/<%= movie.apiId %>/comments/<%= comment._id%>?_method=DELETE">
+                                <input type="submit" class="btn btn-sm btn-danger" value="Delete">
+                            </form>
                             <br>
                         </div>
                     </div>

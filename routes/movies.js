@@ -9,5 +9,5 @@ router.get('/:id', moviesCtrl.getMovie);
 router.get('/favorites/:id', moviesCtrl.addFavorite);
 router.delete('/favorites/:id', moviesCtrl.delFavorite);
 router.post('/:id/comments', moviesCtrl.addComment);
-// router.delete('/:id/comments', moviesCtrl.delComment);
+router.delete('/:apiId/comments/:id', moviesCtrl.delComment);
 module.exports = router;

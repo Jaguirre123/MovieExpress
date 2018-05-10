@@ -40,8 +40,8 @@ function addFavorite(req, res) {
 }
 
 function delFavorite(req, res) {
-        req.user.favorites.remove(req.params.id)
-        req.user.save(function(err) {
+    req.user.favorites.remove(req.params.id)
+    req.user.save(function(err) {
         res.redirect(`/users/${req.user._id}`);
     });
 }
@@ -58,7 +58,12 @@ function addComment(req, res) {
 }
 
 function delComment(req, res) {
-
+    Movie.findOne({apiId: req.params.apiId}, function(err, movie) {
+        movie.comments.id(req.params.id).remove()
+        movie.save(function(err) {
+            res.redirect(`/movies/${movie.apiId}`);
+        });
+    })
 }
 
 function movieApiUtil(apiId, cb) {
@@ -139,6 +144,7 @@ module.exports = {
     addFavorite,
     delFavorite, 
     addComment,
+    delComment,
     searchMovies,
     getUpcoming, 
     recs
