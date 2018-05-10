@@ -1,4 +1,4 @@
-###### Movie Express
+# Movie Express
 ### Team SupaChill
 
 ![Technologies Used](https://i.imgur.com/V5wbqox.png)
@@ -15,18 +15,19 @@ Jesse Aguirre [Github](https://github.com/Jaguirre123)
 
 [Trello Board of Goodness](https://trello.com/b/A1ViE8Rq/movieexpress)
 
-## Link to App
+## Link to Movie Express
+[Link to the Greatest Site Ever](https://movie-express.herokuapp.com/)
 
-## RESTful API endpoints
+### RESTful API endpoints
     * 
     * 
     * 
 
 
-## Unsolved Problems
+### Unsolved Problems
     * None because we boss
 
-## Icebox
+### Icebox
     * ...
 
 ## Special Thanks
