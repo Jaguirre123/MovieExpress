@@ -1,8 +1,18 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Josefin Sans", Helvetica, Arial, sans-serif;
   background: #062F4F;
   /* background: linear-gradient(to bottom right, #062F4F, white); */
+}
+a {
+  color: #062F4F; 
+}
+
+h1 {
+  margin-top: 5px; 
+}
+h2 {
+  margin-top: 5px;
 }
 
 a {
@@ -21,6 +31,9 @@ HEADER
 nav {
   border: 1px solid white;
   box-shadow: 0 0 10px white;
+}
+#nav-btn {
+  color: #813772;
 }
 
 #our-logo {
@@ -160,7 +173,7 @@ MOVIES INDEX
 }
 
 .card-text {
-  font-family:  'Cinzel', serif;
+  font-family:  'Josefin Sans', sans-serif;
 }
 
 @media (max-width: 900px) {

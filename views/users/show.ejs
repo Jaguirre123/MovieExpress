@@ -2,14 +2,14 @@
 
 <div class="container-fluid">
     <div class="row content">
-        <div class="col-sm-3 sidenav">
+        <div class="col-sm-1">
                 <img src="<%= userShow.avatar %>" class="userAvatar">
+        </div>
+                <h2><small><%= userShow.name%>'s Favorites</small></h2> 
+                <hr> 
             <br>
         </div>
-      
         <div class="col-sm-9">
-            <h2><small><%= userShow.name%>'s Favorites</small></h2>
-            <hr>
             <div class="row mb-2">
                 <% userShow.favorites.forEach(function(favorite) { %>               
                         <div class="col-md-4">
