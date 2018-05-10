@@ -29,7 +29,7 @@ function getAllMovies(req, res) {
     });
 }
 
-function getComment(req, res) {
+function getMovie(req, res) {
     Movie.findById(req.params.id, function(err, movie){
         res.status(200).json(movie);
     });
@@ -38,5 +38,5 @@ function getComment(req, res) {
 module.exports = {
     ranking,
     getAllMovies,
-    getComment
+    getMovie
 };
