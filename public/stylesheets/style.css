@@ -257,7 +257,17 @@ MOVIES SHOW
 .cPic {
   border: 1px inset grey;
   box-shadow: 0 0 10px black;
-  margin: 25% 0 25% 0;
+  margin: 5% 0 10% 0;
+}
+
+.commentsUser {
+  border-right: 1px solid black;
+}
+
+.commentP {
+  font-size: 15px;
+  word-wrap: break-word;
+  line-height: 1.5;
 }
 
 @media (max-width: 800px) {
@@ -266,7 +276,7 @@ MOVIES SHOW
     text-align: center;
    }
 
-   .movie {
+  .movie {
     width: 100%;
     height: 500px;
   }
@@ -287,6 +297,11 @@ MOVIES SHOW
   #accordion {
     width: 100% !important;
     margin: 0 auto;
+  }
+
+  .commentsUser {
+    border: none;
+    text-align: center;
   }
 }
 
@@ -310,6 +325,10 @@ MOVIES SHOW
   .overView {
     display: block;
     margin: 35px auto;
+  }
+
+  .comments {
+    text-align: center;
   }
 
 }
