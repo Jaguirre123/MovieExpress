@@ -22,7 +22,7 @@
                                 <p class="card-text text-truncate">
                                     <%= f.title %>
                                 </p>
-                                <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex justify-content-between align-items-center recCards">
                                     <hr>
                                     <div class="btn-group">
                                         <a href="/movies/<%=f.apiId%>" class="btn btn-sm btn-outline-secondary">View</a>
@@ -34,27 +34,22 @@
                     </div>
                     <% }) %>
                 </div>
-            <h4>
-                Based on you and
-                <%= u.name %> liking those films, you might want to check out:
-            </h4>
+            <h4>Based on you and <%= u.name %> liking those films, you might want to check out:</h4>
             <hr>
             <div class="row mb-2">
                 <% u.recs.forEach(function(f, index) { %>
                     <div class="col-md-4">
-                        <div class="card mb-3 box-shadow small-movie">
+                        <div class="card mb-4 box-shadow small-movie">
                             <img class="card-img-top" src="https://image.tmdb.org/t/p/w500/<%= f.poster_path %>" alt="Card image cap">
                             <div class="card-body">
                                 <p class="card-text text-truncate">
                                     <%= f.title %>
                                 </p>
-                                <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex justify-content-between align-items-center recCards">
                                     <hr>
                                     <div class="btn-group">
                                         <a href="/movies/<%= f.apiId %>" class="btn btn-sm btn-outline-secondary">View</a>
                                     </div>
-                                    &nbsp;
-                                    &nbsp;
                                     <% if (f.vote_average >= 1) { %>
                                         <small class="text-muted"><i class="fas fa-star"></i> <%= f.vote_average %> / 10</small>
                                     <% } %>
@@ -68,3 +63,4 @@
     </div>
 </div>
 <%- include("../_partials/footer")%>
+
