@@ -2,7 +2,6 @@ body {
   padding: 50px;
   font: 14px "Josefin Sans", Helvetica, Arial, sans-serif;
   background: #062F4F;
-  /* background: linear-gradient(to bottom right, #062F4F, white); */
 }
 
 a {
@@ -274,7 +273,7 @@ MOVIES SHOW
   .movieReview {
     display: block !important;
     text-align: center;
-   }
+  }
 
   .movie {
     width: 100%;
@@ -315,7 +314,7 @@ MOVIES SHOW
   }
 
   .movieReview {
-   display: block !important;
+    display: block !important;
   }
 
   .movie {
