@@ -4,7 +4,7 @@ var apiCtrl = require('../controllers/apiController');
 
 router.get('/movies/ranking', apiCtrl.ranking);
 router.get('/movies', apiCtrl.getAllMovies);
-router.get('/movies/:id', apiCtrl.getComment);
+router.get('/movies/:id', apiCtrl.getMovie);
 
 
 module.exports = router;

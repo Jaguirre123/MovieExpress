@@ -18,17 +18,32 @@ Jesse Aguirre [Github](https://github.com/Jaguirre123)
 ## Link to Movie Express
 [Link to the Greatest Site Ever](https://movie-express.herokuapp.com/)
 
-### RESTful API endpoints
-    * 
-    * 
-    * 
+# *MovieExpress API Map*
+
+## API MAP
+| | | |
+| :---         |    ---       | ---:
+|**URI**|**HTTP Verb**|**Use Case**|
+| | | |
+| https://movie-express.herokuapp.com/api/movies | GET | Retrieve ALL movies in the DB |
+| | | |
+| https://movie-express.herokuapp.com/api/movies/:id | GET | Retrieve ONE movie and its associated comments|
+| | | |
+| https://movie-express.herokuapp.com/api/movies/ranking	  | GET | Retrieve ALL movies favorited by our site's users |
+||||
+
+If interested in accessing MovieExpress's data, please follow the routes as outlined, above.
 
 
 ### Unsolved Problems
-    * None because we boss
+    * None because We boss
 
 ### Icebox
-    * ...
+    * Search by Cast and Actor
+    * TV Shows
+    * Update Comments
+    * Update profile
+    * Different OAuth Login
 
 ## Special Thanks
     * Jim Clark
