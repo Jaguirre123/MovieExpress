@@ -240,6 +240,7 @@ MOVIES SHOW
 .cPic {
   border: 1px inset grey;
   box-shadow: 0 0 10px black;
+  margin: 25% 0 25% 0;
 }
 
 @media (max-width: 800px) {
