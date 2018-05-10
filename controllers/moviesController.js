@@ -9,6 +9,7 @@ function nowShowing(req, res) {
     request(
         rootURL + 'movie/now_playing?api_key=' + process.env.API_KEY, 
         function(err, response, nowPlaying){
+            // upcoming movies request
             request(
                 rootURL + 'movie/upcoming?api_key='+ process.env.API_KEY,
                 function(err, response, upcoming) {
@@ -21,8 +22,6 @@ function nowShowing(req, res) {
             )  
         }
     )
-    // upcoming movies request
-    
 };
 
 function getMovie(req, res) {
@@ -116,15 +115,6 @@ function searchMovies(req, res) {
     )
 }
 
-function getUpcoming(req, res) {
-    console.log('its hittin it!')
-    request(
-        rootURL + 'movie/upcoming?api_key=' + process.env.API_KEY + '&language=en-US', 
-        function(err, response, body){
-            res.render('movies/index', {upcomingMovies: JSON.parse(body).results, user: req.user});
-        }
-    )  
-}
 function recs(req, res) {
     User.find({_id: {$ne: req.user._id}})
     .where("favorites").in(req.user.favorites).populate('favorites')
@@ -153,7 +143,6 @@ module.exports = {
     delFavorite, 
     addComment,
     delComment,
-    searchMovies,
-    getUpcoming, 
+    searchMovies, 
     recs
 }
