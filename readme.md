@@ -13,6 +13,10 @@ James Mahan [Github](https://github.com/jcmahan)
 Tara Sjarif [Github](https://github.com/mhsjarif)
 Jesse Aguirre [Github](https://github.com/Jaguirre123)
 
+![SnapShots](https://i.imgur.com/fi83cV0.png)
+![Recommendations](https://i.imgur.com/tiTGOET.png)
+![Favorites](https://i.imgur.com/x2R0sIx.png)
+
 [Trello Board of Goodness](https://trello.com/b/A1ViE8Rq/movieexpress)
 
 ## Link to Movie Express
