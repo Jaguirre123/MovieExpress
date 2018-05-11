@@ -34,8 +34,13 @@
                     </div>
                     <% }) %>
                 </div>
-            <h4>Based on you and <%= u.name %> liking those films, you might want to check out:</h4>
-            <hr>
+            <% if (u.recs.length >= 1) { %>
+                <h4>Based on you and <%= u.name %> liking those films, you might want to check out:</h4>
+                <hr>
+            <% } else { %>
+                <h4><%= u.name %> has no recommondations for you.</h4>
+                <hr>
+            <% } %>
             <div class="row mb-2">
                 <% u.recs.forEach(function(f, index) { %>
                     <div class="col-md-4">
